@@ -11,6 +11,18 @@ func with<T, U>(_ v: T, _ handler: (T) -> U) -> U {
     handler(v)
 }
 
+struct SystemUpdateView: UIViewControllerRepresentable {
+    
+    typealias UIViewControllerType = SystemUpdateViewController
+    
+    func makeUIViewController(context: Context) -> SystemUpdateViewController {
+        return .init(style: .grouped)
+    }
+    
+    func updateUIViewController(_ uiViewController: SystemUpdateViewController, context: Context) { }
+    
+}
+
 struct SettingsView: View {
     
     var body: some View {
@@ -38,7 +50,7 @@ struct GeneralSettings: View {
     private let settingsItems: [_SectionModel] = [
         [
             _SettingsItem("关于本机", destination: emptyView),
-            _SettingsItem("软件更新", destination: emptyView),
+            _SettingsItem("软件更新", destination: AnyView(SystemUpdateView())),
         ],
         [
             _SettingsItem("隔空投送", destination: emptyView),

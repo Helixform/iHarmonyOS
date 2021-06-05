@@ -18,6 +18,22 @@ class SystemUpdateViewController: UITableViewController {
 
         title = "软件更新"
         
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.startAnimating()
+        let label = UILabel()
+        label.textColor = .lightGray
+        label.text = "正在检查更新..."
+        label.font = .systemFont(ofSize: 16)
+        let loadingView = UIStackView(arrangedSubviews: [activityIndicator, label])
+        loadingView.spacing = 6
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(loadingView)
+        
+        NSLayoutConstraint.activate([
+            loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+        ])
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -32,6 +48,8 @@ class SystemUpdateViewController: UITableViewController {
             self.isLoading = false
             self.tableView.insertSections(IndexSet(arrayLiteral: 0, 1, 2), with: .fade)
             self.tableView.endUpdates()
+            
+            loadingView.removeFromSuperview()
         }
     }
 
