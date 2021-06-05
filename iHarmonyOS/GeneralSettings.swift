@@ -35,7 +35,7 @@ struct SettingsView: View {
 
 struct GeneralSettings: View {
     
-    private let settingsItems: [[_SettingsItem]] = [
+    private let settingsItems: [_SectionModel] = [
         [
             _SettingsItem("关于本机", destination: emptyView),
             _SettingsItem("软件更新", destination: emptyView),
@@ -69,19 +69,13 @@ struct GeneralSettings: View {
             _SettingsItem("还原", destination: emptyView),
             _SettingsItem("关机", destination: emptyView, isButton: true),
         ],
-    ]
-    
-    @State private var sectionHelper = SectionHelper()
+    ].enumerated().map { _SectionModel(id: $0.offset, items: $0.element) }
     
     var body: some View {
         List {
-            ForEach(settingsItems, id: \.first?.titleKey) { sections in
-                Section(header: sectionHelper.isFirstSection ? AnyView(Text("").frame(height: 0.01)) : AnyView(EmptyView())) {
-                    ForEach(sections) { item in
-                        with(0) { (_: Int) -> AnyView in
-                            sectionHelper.isFirstSection = false
-                            return AnyView(Optional<EmptyView>.none)
-                        }
+            ForEach(settingsItems) { sections in
+                Section(header: sections.id == 0 ? AnyView(Text("").frame(height: 0.01)) : AnyView(EmptyView())) {
+                    ForEach(sections.items) { item in
                         if item.isButton {
                             Button(action: {}, label: {
                                 Text(item.titleKey)
@@ -107,6 +101,8 @@ fileprivate let emptyView = AnyView(EmptyView())
 
 fileprivate let halfSpace: String = "\u{200A}\u{200A}\u{200A}"
 
+// MARK: - Section
+
 fileprivate struct _SettingsItem: Identifiable {
     
     var id: String { titleKey }
@@ -122,8 +118,9 @@ fileprivate struct _SettingsItem: Identifiable {
     
 }
 
-fileprivate class SectionHelper {
-    var isFirstSection: Bool = true
+fileprivate struct _SectionModel: Identifiable {
+    var id: Int
+    var items: [_SettingsItem]
 }
 
 // MARK: - Preview
