@@ -7,15 +7,19 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct GeneralSettings: View {
+    
     var body: some View {
         Text("Hello, world!")
             .padding()
     }
+    
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct GeneralSettings_Previews: PreviewProvider {
+    
     static var previews: some View {
-        ContentView()
+        GeneralSettings()
     }
+    
 }

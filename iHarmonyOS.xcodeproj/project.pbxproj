@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		FAAC97A8266BBAFF00B88089 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC97A7266BBAFF00B88089 /* AppDelegate.swift */; };
 		FAAC97AA266BBAFF00B88089 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC97A9266BBAFF00B88089 /* SceneDelegate.swift */; };
-		FAAC97AC266BBAFF00B88089 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC97AB266BBAFF00B88089 /* ContentView.swift */; };
+		FAAC97AC266BBAFF00B88089 /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC97AB266BBAFF00B88089 /* GeneralSettings.swift */; };
 		FAAC97AE266BBB0000B88089 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAAC97AD266BBB0000B88089 /* Assets.xcassets */; };
 		FAAC97B1266BBB0000B88089 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAAC97B0266BBB0000B88089 /* Preview Assets.xcassets */; };
 		FAAC97B4266BBB0000B88089 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAC97B2266BBB0000B88089 /* LaunchScreen.storyboard */; };
+		FAAC97BC266BBB8C00B88089 /* SystemUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC97BB266BBB8C00B88089 /* SystemUpdateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FAAC97A4266BBAFF00B88089 /* iHarmonyOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iHarmonyOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAC97A7266BBAFF00B88089 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAAC97A9266BBAFF00B88089 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FAAC97AB266BBAFF00B88089 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FAAC97AB266BBAFF00B88089 /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
 		FAAC97AD266BBB0000B88089 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAAC97B0266BBB0000B88089 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FAAC97B3266BBB0000B88089 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAAC97B5266BBB0000B88089 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAAC97BB266BBB8C00B88089 /* SystemUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemUpdateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,8 @@
 			children = (
 				FAAC97A7266BBAFF00B88089 /* AppDelegate.swift */,
 				FAAC97A9266BBAFF00B88089 /* SceneDelegate.swift */,
-				FAAC97AB266BBAFF00B88089 /* ContentView.swift */,
+				FAAC97AB266BBAFF00B88089 /* GeneralSettings.swift */,
+				FAAC97BB266BBB8C00B88089 /* SystemUpdateViewController.swift */,
 				FAAC97AD266BBB0000B88089 /* Assets.xcassets */,
 				FAAC97B2266BBB0000B88089 /* LaunchScreen.storyboard */,
 				FAAC97B5266BBB0000B88089 /* Info.plist */,
@@ -145,9 +148,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAAC97BC266BBB8C00B88089 /* SystemUpdateViewController.swift in Sources */,
 				FAAC97A8266BBAFF00B88089 /* AppDelegate.swift in Sources */,
 				FAAC97AA266BBAFF00B88089 /* SceneDelegate.swift in Sources */,
-				FAAC97AC266BBAFF00B88089 /* ContentView.swift in Sources */,
+				FAAC97AC266BBAFF00B88089 /* GeneralSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
