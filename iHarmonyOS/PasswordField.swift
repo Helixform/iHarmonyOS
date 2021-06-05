@@ -40,7 +40,8 @@ class PasswordField: UIView {
     
     func commonInit() {
         for _ in 0..<dots {
-            let dotView = UIImageView(image: .init(named: "passcodeDot-outline_Normal"))
+            let dotView = UIImageView()
+            dotView.tintColor = .label
             addSubview(dotView)
             dotViews.append(dotView)
         }
@@ -61,9 +62,9 @@ class PasswordField: UIView {
         for (index, dotView) in dotViews.enumerated() {
             dotView.frame = .init(x: currentX, y: 7, width: dotSize, height: dotSize)
             if index < textLength {
-                dotView.image = .init(named: "passcodeDot-full_Normal")
+                dotView.image = .init(named: "passcodeDot-full_Normal")?.withRenderingMode(.alwaysTemplate)
             } else {
-                dotView.image = .init(named: "passcodeDot-outline_Normal")
+                dotView.image = .init(named: "passcodeDot-outline_Normal")?.withRenderingMode(.alwaysTemplate)
             }
             currentX += dotSize + spacing
         }

@@ -94,7 +94,9 @@ struct GeneralSettings: View {
                             })
                         } else {
                             NavigationLink(
-                                destination: item.destination,
+                                destination:
+                                    item.destination
+                                    .navigationBarTitle(item.titleKey, displayMode: .inline),
                                 label: {
                                     Text(item.titleKey)
                                 })
