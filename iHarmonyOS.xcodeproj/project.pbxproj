@@ -14,6 +14,10 @@
 		FAAC97B1266BBB0000B88089 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAAC97B0266BBB0000B88089 /* Preview Assets.xcassets */; };
 		FAAC97B4266BBB0000B88089 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAC97B2266BBB0000B88089 /* LaunchScreen.storyboard */; };
 		FAAC97BC266BBB8C00B88089 /* SystemUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC97BB266BBB8C00B88089 /* SystemUpdateViewController.swift */; };
+		FAAC97BF266BC11500B88089 /* SystemUpdateInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC97BD266BC11500B88089 /* SystemUpdateInfoCell.swift */; };
+		FAAC97C0266BC11500B88089 /* SystemUpdateInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAAC97BE266BC11500B88089 /* SystemUpdateInfoCell.xib */; };
+		FAAC97C2266BC90900B88089 /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC97C1266BC90900B88089 /* PasswordField.swift */; };
+		FAAC97C4266BC9AD00B88089 /* PasswordInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC97C3266BC9AD00B88089 /* PasswordInputController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		FAAC97B3266BBB0000B88089 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAAC97B5266BBB0000B88089 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAAC97BB266BBB8C00B88089 /* SystemUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemUpdateViewController.swift; sourceTree = "<group>"; };
+		FAAC97BD266BC11500B88089 /* SystemUpdateInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemUpdateInfoCell.swift; sourceTree = "<group>"; };
+		FAAC97BE266BC11500B88089 /* SystemUpdateInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SystemUpdateInfoCell.xib; sourceTree = "<group>"; };
+		FAAC97C1266BC90900B88089 /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
+		FAAC97C3266BC9AD00B88089 /* PasswordInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,10 @@
 				FAAC97A9266BBAFF00B88089 /* SceneDelegate.swift */,
 				FAAC97AB266BBAFF00B88089 /* GeneralSettings.swift */,
 				FAAC97BB266BBB8C00B88089 /* SystemUpdateViewController.swift */,
+				FAAC97BD266BC11500B88089 /* SystemUpdateInfoCell.swift */,
+				FAAC97BE266BC11500B88089 /* SystemUpdateInfoCell.xib */,
+				FAAC97C1266BC90900B88089 /* PasswordField.swift */,
+				FAAC97C3266BC9AD00B88089 /* PasswordInputController.swift */,
 				FAAC97AD266BBB0000B88089 /* Assets.xcassets */,
 				FAAC97B2266BBB0000B88089 /* LaunchScreen.storyboard */,
 				FAAC97B5266BBB0000B88089 /* Info.plist */,
@@ -136,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAAC97B4266BBB0000B88089 /* LaunchScreen.storyboard in Resources */,
+				FAAC97C0266BC11500B88089 /* SystemUpdateInfoCell.xib in Resources */,
 				FAAC97B1266BBB0000B88089 /* Preview Assets.xcassets in Resources */,
 				FAAC97AE266BBB0000B88089 /* Assets.xcassets in Resources */,
 			);
@@ -149,8 +162,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAAC97BC266BBB8C00B88089 /* SystemUpdateViewController.swift in Sources */,
+				FAAC97C2266BC90900B88089 /* PasswordField.swift in Sources */,
 				FAAC97A8266BBAFF00B88089 /* AppDelegate.swift in Sources */,
 				FAAC97AA266BBAFF00B88089 /* SceneDelegate.swift in Sources */,
+				FAAC97C4266BC9AD00B88089 /* PasswordInputController.swift in Sources */,
+				FAAC97BF266BC11500B88089 /* SystemUpdateInfoCell.swift in Sources */,
 				FAAC97AC266BBAFF00B88089 /* GeneralSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

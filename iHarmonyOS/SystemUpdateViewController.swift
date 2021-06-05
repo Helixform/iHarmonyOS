@@ -7,75 +7,115 @@
 
 import UIKit
 
+private let systemCellIdentifier = "systemCell"
+
 class SystemUpdateViewController: UITableViewController {
 
+    private var isLoading = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "软件更新"
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.register(UINib(nibName: "SystemUpdateInfoCell", bundle: nil), forCellReuseIdentifier: "SystemUpdateInfoCell")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+            guard let self = self else { return }
+            
+            self.tableView.beginUpdates()
+            self.isLoading = false
+            self.tableView.insertSections(IndexSet(arrayLiteral: 0, 1, 2), with: .fade)
+            self.tableView.endUpdates()
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return isLoading ? 0 : 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        if section == 1 {
+            return 2
+        }
+        return 1
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let section = indexPath.section
+        let row = indexPath.row
+        
         // Configure the cell...
+        if section == 0 && row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: systemCellIdentifier) ?? UITableViewCell(style: .value1, reuseIdentifier: systemCellIdentifier)
+            cell.textLabel?.text = "自动更新"
+            cell.detailTextLabel?.text = "关闭"
+            cell.accessoryType = .disclosureIndicator
+            return cell
+        }
+        
+        if section == 1 && row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SystemUpdateInfoCell", for: indexPath)
+            return cell
+        }
+        
+        if section == 1 && row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: systemCellIdentifier) ?? UITableViewCell(style: .value1, reuseIdentifier: systemCellIdentifier)
+            cell.textLabel?.text = "了解更多"
+            cell.detailTextLabel?.text = ""
+            cell.accessoryType = .disclosureIndicator
+            return cell
+        }
 
-        return cell
+        if section == 2 && row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: systemCellIdentifier) ?? UITableViewCell(style: .value1, reuseIdentifier: systemCellIdentifier)
+            cell.textLabel?.text = "下载并安装"
+            cell.textLabel?.textColor = .systemBlue
+            cell.detailTextLabel?.text = ""
+            cell.accessoryType = .none
+            return cell
+        }
+        
+        return .init(style: .value1, reuseIdentifier: systemCellIdentifier)
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1 && indexPath.row == 0 {
+            return 219
+        }
+        return 44
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.section == 2 {
+            let vc = PasswordInputController()
+            vc.completionHandler = {
+                let cell = self.tableView.cellForRow(at: .init(row: 0, section: 1)) as! SystemUpdateInfoCell
+                cell.startFakeProgress()
+                
+                let cell2 = self.tableView.cellForRow(at: .init(row: 0, section: 2))!
+                cell2.textLabel?.text = "已请求更新..."
+                cell2.textLabel?.textColor = .gray
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+                    cell2.textLabel?.text = "正在下载..."
+                }
+            }
+            let nc = UINavigationController(rootViewController: vc)
+            nc.modalPresentationStyle = .fullScreen
+            present(nc, animated: true, completion: nil)
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+    
     /*
     // MARK: - Navigation
 
