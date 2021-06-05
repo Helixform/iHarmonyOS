@@ -71,8 +71,8 @@ struct GeneralSettings: View {
             _SettingsItem("词典", destination: emptyView),
         ],
         [
-            _SettingsItem("VPN", destination: emptyView),
-            _SettingsItem("描述文件与设备管理", destination: emptyView),
+            _SettingsItem("VPN", destination: emptyView, tag: "未连接"),
+            _SettingsItem("描述文件与设备管理", destination: emptyView, tag: "1"),
         ],
         [
             _SettingsItem("法律与监管", destination: emptyView),
@@ -98,7 +98,16 @@ struct GeneralSettings: View {
                                     item.destination
                                     .navigationBarTitle(item.titleKey, displayMode: .inline),
                                 label: {
-                                    Text(item.titleKey)
+                                    if item.tag.count == 0 {
+                                        Text(item.titleKey)
+                                    } else {
+                                        HStack {
+                                            Text(item.titleKey)
+                                            Spacer()
+                                            Text(item.tag)
+                                                .foregroundColor(.init(.secondaryLabel))
+                                        }
+                                    }
                                 })
                         }
                     }
@@ -123,11 +132,13 @@ fileprivate struct _SettingsItem: Identifiable {
     var titleKey: String
     var destination: AnyView
     var isButton: Bool
+    var tag: String
     
-    init(_ titleKey: String, destination: AnyView, isButton: Bool = false) {
+    init(_ titleKey: String, destination: AnyView, isButton: Bool = false, tag: String = .init()) {
         self.titleKey = titleKey
         self.destination = destination
         self.isButton = isButton
+        self.tag = tag
     }
     
 }
