@@ -8,16 +8,15 @@
 import UIKit
 
 class PasswordInputController: UIViewController {
+    var completionHandler: (() -> Void)?
 
-    var completionHandler: (() -> ())?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = "输入密码"
-        
+
         navigationItem.rightBarButtonItem = .init(title: "取消", style: .plain, target: self, action: #selector(cancel))
-        
+
         view.backgroundColor = .systemGroupedBackground
 
         let label = UILabel()
@@ -25,7 +24,7 @@ class PasswordInputController: UIViewController {
         label.font = .systemFont(ofSize: 17)
         label.text = "请输入密码"
         view.addSubview(label)
-        
+
         let field = PasswordField()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.changeHandler = { [unowned self] in
@@ -36,32 +35,31 @@ class PasswordInputController: UIViewController {
             }
         }
         view.addSubview(field)
-        
+
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 163),
-            
+
             field.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            field.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 24)
+            field.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 24),
         ])
-        
+
         DispatchQueue.main.async {
             field.becomeFirstResponder()
         }
     }
-    
+
     @objc func cancel() {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         // Get the new view controller using segue.destination.
+         // Pass the selected object to the new view controller.
+     }
+     */
 }

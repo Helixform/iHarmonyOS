@@ -12,45 +12,57 @@ func with<T, U>(_ v: T, _ handler: (T) -> U) -> U {
 }
 
 struct SystemUpdateView: UIViewControllerRepresentable {
-    
     typealias UIViewControllerType = SystemUpdateViewController
-    
-    func makeUIViewController(context: Context) -> SystemUpdateViewController {
-        return .init(style: .grouped)
+
+    func makeUIViewController(context _: Context) -> SystemUpdateViewController {
+        .init(style: .grouped)
     }
-    
-    func updateUIViewController(_ uiViewController: SystemUpdateViewController, context: Context) { }
-    
+
+    func updateUIViewController(_: SystemUpdateViewController, context _: Context) {}
 }
 
 struct SettingsView: View {
-    
     var body: some View {
-        NavigationView {
-            NavigationLink(
-                destination: GeneralSettings(),
-                label: {
-                    Text("通用")
-                        .bold()
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 36)
-                        .padding(.vertical)
-                        .background(Color.init(.systemBlue))
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                })
-                .navigationBarTitle("设置")
-                .navigationBarHidden(true)
+        GeometryReader { reader in
+            if reader.size.width > 600 {
+                HStack(spacing: 0) {
+                    iPadPannel()
+                        .frame(width: 380)
+                    // Side Bar Not Work
+                    Divider()
+                        .ignoresSafeArea()
+                    NavigationView {
+                        GeneralSettings()
+                    }
+                    .navigationViewStyle(StackNavigationViewStyle())
+                }
+            } else {
+                NavigationView {
+                    NavigationLink(
+                        destination: GeneralSettings(),
+                        label: {
+                            Text("通用")
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 36)
+                                .padding(.vertical)
+                                .background(Color(.systemBlue))
+                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                        }
+                    )
+                    .navigationBarTitle("设置")
+                    .navigationBarHidden(true)
+                }
+            }
         }
     }
-    
 }
 
 struct GeneralSettings: View {
-    
     private let settingsItems: [_SectionModel] = [
         [
             _SettingsItem("关于本机", destination: emptyView),
-            _SettingsItem("软件更新", destination: AnyView(SystemUpdateView())),
+            _SettingsItem("软件更新", destination: AnyView(iPadUpdate())),
         ],
         [
             _SettingsItem("隔空投送", destination: emptyView),
@@ -82,9 +94,13 @@ struct GeneralSettings: View {
             _SettingsItem("关机", destination: emptyView, isButton: true),
         ],
     ].enumerated().map { _SectionModel(id: $0.offset, items: $0.element) }
-    
+
+    init() {
+        UINavigationBar.changeAppearance(clear: true)
+    }
+
     var body: some View {
-        List {
+        Form {
             ForEach(settingsItems) { sections in
                 Section(header: sections.id == 0 ? AnyView(Text("").frame(height: 0.01)) : AnyView(EmptyView())) {
                     ForEach(sections.items) { item in
@@ -95,7 +111,7 @@ struct GeneralSettings: View {
                         } else {
                             NavigationLink(
                                 destination:
-                                    item.destination
+                                item.destination
                                     .navigationBarTitle(item.titleKey, displayMode: .inline),
                                 label: {
                                     if item.tag.count == 0 {
@@ -108,7 +124,8 @@ struct GeneralSettings: View {
                                                 .foregroundColor(.init(.secondaryLabel))
                                         }
                                     }
-                                })
+                                }
+                            )
                         }
                     }
                 }
@@ -116,34 +133,36 @@ struct GeneralSettings: View {
         }
         .listStyle(GroupedListStyle())
         .navigationBarTitle("通用", displayMode: .inline)
+        .padding(.horizontal, 120)
+        .background(
+            Color(.systemGroupedBackground)
+                .ignoresSafeArea()
+        )
     }
-
 }
 
-fileprivate let emptyView = AnyView(EmptyView())
+private let emptyView = AnyView(EmptyView())
 
-fileprivate let halfSpace: String = "\u{200A}\u{200A}\u{200A}"
+private let halfSpace: String = "\u{200A}\u{200A}\u{200A}"
 
 // MARK: - Section
 
-fileprivate struct _SettingsItem: Identifiable {
-    
+private struct _SettingsItem: Identifiable {
     var id: String { titleKey }
     var titleKey: String
     var destination: AnyView
     var isButton: Bool
     var tag: String
-    
+
     init(_ titleKey: String, destination: AnyView, isButton: Bool = false, tag: String = .init()) {
         self.titleKey = titleKey
         self.destination = destination
         self.isButton = isButton
         self.tag = tag
     }
-    
 }
 
-fileprivate struct _SectionModel: Identifiable {
+private struct _SectionModel: Identifiable {
     var id: Int
     var items: [_SettingsItem]
 }
@@ -151,10 +170,24 @@ fileprivate struct _SectionModel: Identifiable {
 // MARK: - Preview
 
 struct GeneralSettings_Previews: PreviewProvider {
-    
     static var previews: some View {
         SettingsView()
         GeneralSettings()
     }
-    
+}
+
+extension UINavigationBar {
+    static func changeAppearance(clear: Bool) {
+        let appearance = UINavigationBarAppearance()
+
+        if clear {
+            appearance.configureWithTransparentBackground()
+        } else {
+            appearance.configureWithDefaultBackground()
+        }
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
 }
