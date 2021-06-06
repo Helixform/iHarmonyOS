@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct iPadUpdate: View {
-    @State var status = 2
+    @State var status = 1
 
     let cell = UpdateCellRef()
 
-    
     var body: some View {
         Group {
             if status == 1 {
@@ -134,12 +133,12 @@ struct UpdateCellRef: UIViewRepresentable {
         return tableView
     }
 
-    func start(done: @escaping () -> ()) {
+    func start(done: @escaping () -> Void) {
         var vc: UIViewController? = tableView.window?.rootViewController
         while vc?.presentedViewController != nil {
             vc = vc?.presentedViewController
         }
-        
+
         let auth = PasswordInputController()
         auth.completionHandler = {
             done()
@@ -147,13 +146,12 @@ struct UpdateCellRef: UIViewRepresentable {
             let target = item as! SystemUpdateInfoCell
             target.startFakeProgress()
         }
-        auth.modalPresentationStyle = .formSheet
-        auth.preferredContentSize = CGSize(width: 500, height: 500)
-        
-        vc?.present(auth, animated: true, completion: {
 
-        })
+        let nav = UINavigationController(rootViewController: auth)
+        nav.modalPresentationStyle = .formSheet
+        nav.preferredContentSize = CGSize(width: 500, height: 500)
+        vc?.present(nav, animated: true, completion: {})
     }
-    
+
     func updateUIView(_: UIViewType, context _: Context) {}
 }

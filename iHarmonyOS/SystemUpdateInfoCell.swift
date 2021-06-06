@@ -34,7 +34,6 @@ class SystemUpdateInfoCell: UITableViewCell {
         progressView.progress = 0
         sizeLabel.text = "正在估算剩余时间..."
 
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             UIView.performWithoutAnimation {
                 self.progressView.progress = 0.01
@@ -48,7 +47,7 @@ class SystemUpdateInfoCell: UITableViewCell {
                 self.progressView.alpha = 1
             }
         }
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
             UIView.performWithoutAnimation {
                 self.progressView.progress = 0.07
@@ -62,7 +61,7 @@ class SystemUpdateInfoCell: UITableViewCell {
                 self.progressView.alpha = 1
             }
         }
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
             UIView.performWithoutAnimation {
                 self.progressView.progress = 0.1
@@ -76,7 +75,7 @@ class SystemUpdateInfoCell: UITableViewCell {
                 self.progressView.alpha = 1
             }
         }
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(6)) {
             UIView.performWithoutAnimation {
                 self.progressView.progress = 0.12
