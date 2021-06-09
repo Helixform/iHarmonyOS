@@ -16,12 +16,14 @@ struct SystemUpdateView: UIViewControllerRepresentable {
     typealias UIViewControllerType = SystemUpdateViewController
     
     func makeUIViewController(context: Context) -> SystemUpdateViewController {
-        return .init(style: .grouped)
+        return .init(style: .insetGrouped)
     }
     
     func updateUIViewController(_ uiViewController: SystemUpdateViewController, context: Context) { }
     
 }
+
+// MARK: - Settings View
 
 struct SettingsView: View {
     
@@ -83,20 +85,23 @@ struct GeneralSettings: View {
         ],
     ].enumerated().map { _SectionModel(id: $0.offset, items: $0.element) }
     
+    @State private var listBinding: UUID?
+    
     var body: some View {
-        List {
-            ForEach(settingsItems) { sections in
+        List(selection: $listBinding) {
+            ForEach(settingsItems) { (sections: _SectionModel) in
                 Section(header: sections.id == 0 ? AnyView(Text("").frame(height: 0.01)) : AnyView(EmptyView())) {
-                    ForEach(sections.items) { item in
+                    ForEach(sections.items) { (item: _SettingsItem) in
                         if item.isButton {
                             Button(action: {}, label: {
                                 Text(item.titleKey)
-                            })
+                            }).id(UUID())
                         } else {
                             NavigationLink(
                                 destination:
                                     item.destination
-                                    .navigationBarTitle(item.titleKey, displayMode: .inline),
+                                    .navigationBarTitle(item.titleKey, displayMode: .inline)
+                                    .ignoresSafeArea(),
                                 label: {
                                     if item.tag.count == 0 {
                                         Text(item.titleKey)
@@ -108,13 +113,14 @@ struct GeneralSettings: View {
                                                 .foregroundColor(.init(.secondaryLabel))
                                         }
                                     }
-                                })
+                                }
+                            ).id(UUID())
                         }
                     }
                 }
             }
         }
-        .listStyle(GroupedListStyle())
+        .listStyle(InsetGroupedListStyle())
         .navigationBarTitle("通用", displayMode: .inline)
     }
 
