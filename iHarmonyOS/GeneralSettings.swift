@@ -73,8 +73,7 @@ struct GeneralSettings: View {
             _SettingsItem("词典", destination: emptyView),
         ],
         [
-            _SettingsItem("VPN", destination: emptyView, tag: "未连接"),
-            _SettingsItem("描述文件与设备管理", destination: emptyView, tag: "1"),
+            _SettingsItem("VPN\(halfSpace)与设备管理", destination: emptyView),
         ],
         [
             _SettingsItem("法律与监管", destination: emptyView),
@@ -85,24 +84,21 @@ struct GeneralSettings: View {
         ],
     ].enumerated().map { _SectionModel(id: $0.offset, items: $0.element) }
     
-    @State private var listBinding: UUID?
-    
     var body: some View {
-        List(selection: $listBinding) {
+        List {
             ForEach(settingsItems) { (sections: _SectionModel) in
                 Section(header: sections.id == 0 ? AnyView(Text("").frame(height: 0.01)) : AnyView(EmptyView())) {
                     ForEach(sections.items) { (item: _SettingsItem) in
                         if item.isButton {
                             Button(action: {}, label: {
                                 Text(item.titleKey)
-                            }).id(UUID())
+                            })
                         } else {
                             NavigationLink(
                                 destination:
                                     item.destination
                                     .navigationBarTitle(item.titleKey, displayMode: .inline)
-                                    .ignoresSafeArea(),
-                                label: {
+                                    .ignoresSafeArea()) {
                                     if item.tag.count == 0 {
                                         Text(item.titleKey)
                                     } else {
@@ -114,7 +110,6 @@ struct GeneralSettings: View {
                                         }
                                     }
                                 }
-                            ).id(UUID())
                         }
                     }
                 }
