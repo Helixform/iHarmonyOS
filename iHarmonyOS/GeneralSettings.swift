@@ -79,7 +79,7 @@ struct GeneralSettings: View {
             _SettingsItem("法律与监管", destination: emptyView),
         ],
         [
-            _SettingsItem("还原", destination: emptyView),
+            _SettingsItem("传输或还原\(halfSpace)iPhone", destination: emptyView),
             _SettingsItem("关机", destination: emptyView, isButton: true),
         ],
     ].enumerated().map { _SectionModel(id: $0.offset, items: $0.element) }
