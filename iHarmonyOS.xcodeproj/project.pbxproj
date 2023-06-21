@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D6E6B792A42EF7600641B8A /* HOTAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E6B782A42EF7600641B8A /* HOTAView.swift */; };
 		FAAC97A8266BBAFF00B88089 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC97A7266BBAFF00B88089 /* AppDelegate.swift */; };
 		FAAC97AA266BBAFF00B88089 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC97A9266BBAFF00B88089 /* SceneDelegate.swift */; };
 		FAAC97AC266BBAFF00B88089 /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC97AB266BBAFF00B88089 /* GeneralSettings.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D6E6B782A42EF7600641B8A /* HOTAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HOTAView.swift; sourceTree = "<group>"; };
 		FAAC97A4266BBAFF00B88089 /* iHarmonyOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iHarmonyOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAC97A7266BBAFF00B88089 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAAC97A9266BBAFF00B88089 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				FAAC97A9266BBAFF00B88089 /* SceneDelegate.swift */,
 				FAAC97AB266BBAFF00B88089 /* GeneralSettings.swift */,
 				FAAC97BB266BBB8C00B88089 /* SystemUpdateViewController.swift */,
+				2D6E6B782A42EF7600641B8A /* HOTAView.swift */,
 				FAAC97BD266BC11500B88089 /* SystemUpdateInfoCell.swift */,
 				FAAC97BE266BC11500B88089 /* SystemUpdateInfoCell.xib */,
 				FAAC97C1266BC90900B88089 /* PasswordField.swift */,
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D6E6B792A42EF7600641B8A /* HOTAView.swift in Sources */,
 				FAAC97BC266BBB8C00B88089 /* SystemUpdateViewController.swift in Sources */,
 				FAAC97C2266BC90900B88089 /* PasswordField.swift in Sources */,
 				FAAC97A8266BBAFF00B88089 /* AppDelegate.swift in Sources */,

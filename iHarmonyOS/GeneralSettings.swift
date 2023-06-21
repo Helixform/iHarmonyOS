@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-func with<T, U>(_ v: T, _ handler: (T) -> U) -> U {
-    handler(v)
-}
-
 struct SystemUpdateView: UIViewControllerRepresentable {
     
     typealias UIViewControllerType = SystemUpdateViewController
@@ -123,7 +119,7 @@ struct GeneralSettings: View {
 
 fileprivate let emptyView = AnyView(EmptyView())
 
-fileprivate let halfSpace: String = "\u{200A}\u{200A}\u{200A}"
+public let halfSpace: String = "\u{200A}\u{200A}\u{200A}"
 
 // MARK: - Section
 
